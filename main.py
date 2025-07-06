@@ -3,6 +3,8 @@
 # a tecla space solta uma bomba gigante e o player ganha o jogo (uma forma de sair do jogo), e ainda falta a musica.
 # nome: Jose Douglas Pimentel Rodrigues
 # RU: 4696224
+import os
+
 import pygame
 import sys
 import random
@@ -60,12 +62,23 @@ ALTURA = 400
 TELA = pygame.display.set_mode((LARGURA, ALTURA))
 pygame.display.set_caption('Fuga Estelar')
 
+
 # Carrega as imagens
-background = pygame.image.load('assets/background.jpg')
-player = pygame.image.load('assets/Player1.png')
-enemy = pygame.image.load('assets/Enemy1.png')
-background_inicial = pygame.image.load('assets/telaInicial.png')
-bomba_img = pygame.image.load("assets/bomba.png")
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
+# Carrega as imagens usando resource_path
+background = pygame.image.load(resource_path('assets/background.jpg'))
+player = pygame.image.load(resource_path('assets/Player1.png'))
+enemy = pygame.image.load(resource_path('assets/Enemy1.png'))
+background_inicial = pygame.image.load(resource_path('assets/telaInicial.png'))
+bomba_img = pygame.image.load(resource_path('assets/bomba.png'))
 
 # Fontes
 fonte = pygame.font.SysFont(None, 60)

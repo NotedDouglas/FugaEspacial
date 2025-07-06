@@ -1,3 +1,8 @@
+# O jogo ainda não está finalizado meu objetivo é que a nave inimiga saia deixando minas pelo mapa enquanto
+# persegue o player, e o player tem que fugir do inimigo e desviar das bombas deixando o jogo mais interessante
+# a tecla space solta uma bomba gigante e o player ganha o jogo (uma forma de sair do jogo), e ainda falta a musica.
+# nome: Jose Douglas Pimentel Rodrigues
+# RU: 4696224
 import pygame
 import sys
 import random
@@ -62,7 +67,7 @@ enemy = pygame.image.load('assets/Enemy1.png')
 background_inicial = pygame.image.load('assets/telaInicial.png')
 bomba_img = pygame.image.load("assets/bomba.png")
 
-# Fonte
+# Fontes
 fonte = pygame.font.SysFont(None, 60)
 fonte_score = pygame.font.SysFont(None, 36)
 
@@ -212,6 +217,7 @@ while jogar:
         bomba_rect = pygame.Rect(bomba[0] - bomba_img.get_width() // 2, bomba[1] - bomba_img.get_height() // 2,
                                  bomba_img.get_width(), bomba_img.get_height())
         if inimigo.colliderect(bomba_rect):
+            venceu = True
             TELA.fill((0, 0, 0))
             for b in bombas:
                 TELA.blit(bomba_img, (b[0] - bomba_img.get_width() // 2, b[1] - bomba_img.get_height() // 2))
@@ -245,7 +251,7 @@ while jogar:
                         elif evento.key == pygame.K_ESCAPE:
                             pygame.quit()
                             sys.exit()
-            break  # Sai do loop para evitar múltiplas execuções
+            break
 
     # Aumenta dificuldade com o tempo
     tempo_atual = (pygame.time.get_ticks() - tempo_inicial) // 1000
